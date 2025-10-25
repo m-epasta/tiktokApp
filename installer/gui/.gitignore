@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+dist/
+.env
+
+# Build files
+target/
+build/
+*.pdb
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Testing
+coverage/
+.nyc_output/
+
+# Temporary files
+.temp/
+.tmp/
+*.bak
+
+# Application specific
+.tiktok-app/
+.tiktok-builder/
+installer/temp/
+emoji_images/*
+!emoji_images/emoji_map.json
+
+# Video files
+*.mp4
+*.webm
+*.mov
+*.avi

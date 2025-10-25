@@ -1,0 +1,5 @@
+# Navigate to the directory where you downloaded the file
+cd ~/Downloads
+
+# Install the package (the exact filename may vary)
+sudo apt install ./code_*.deb

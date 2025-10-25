@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Short Studio MVP",
+  "version": "0.1.0",
+  "identifier": "com.shortstudio.mvp",
+  "build": {
+    "beforeDevCommand": "vite",
+    "devUrl": "http://localhost:5173",
+    "beforeBuildCommand": "vite build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Short Studio MVP",
+        "width": 1024,
+        "height": 700,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": null,
+      "capabilities": [
+        {
+          "identifier": "main-capability",
+          "windows": ["main"],
+          "permissions": [
+            "core:path:default",
+            "dialog:default",
+            { "identifier": "shell:allow-execute", "allow": [{ "name": "python3", "cmd": "python3", "args": true, "sidecar": false }] }
+          ]
+        }
+      ]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": [
+      "../whisper_transcribe.py"
+    ]
+  },
+  "plugins": {
+    "shell": {}
+  }
+}

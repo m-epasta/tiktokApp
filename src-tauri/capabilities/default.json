@@ -1,0 +1,12 @@
+{
+  "identifier": "default",
+  "description": "Default permissions for the application",
+  "platforms": ["linux", "macOS", "windows"],
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "dialog:allow-open",
+    "dialog:allow-save",
+    { "identifier": "shell:allow-execute", "allow": [{ "name": "python3", "cmd": "python3", "args": true, "sidecar": false }] }
+  ]
+}

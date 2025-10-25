@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { invoke } from '@tauri-apps/api/core'
 import { listen } from '@tauri-apps/api/event'
 import { open, save } from '@tauri-apps/plugin-dialog'
+import SystemCheck from './components/SystemCheck'
 
 interface Clip {
   start_time: number
@@ -30,6 +31,7 @@ export default function App() {
   const [logs, setLogs] = useState<string[]>([])
   const [processing, setProcessing] = useState(false)
   const [mode, setMode] = useState<ExportMode>('single')
+  const [systemChecked, setSystemChecked] = useState(false)
   const [clips, setClips] = useState<Clip[]>([])
   const [selectedClips, setSelectedClips] = useState<Set<number>>(new Set())
   const [detectingClips, setDetectingClips] = useState(false)
@@ -320,6 +322,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-br from-blue-50 to-indigo-100 select-none">
+      {!systemChecked && (
+        <SystemCheck onComplete={() => setSystemChecked(true)} />
+      )}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

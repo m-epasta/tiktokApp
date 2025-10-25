@@ -28,7 +28,12 @@
           "permissions": [
             "core:path:default",
             "dialog:default",
-            { "identifier": "shell:allow-execute", "allow": [{ "name": "python3", "cmd": "python3", "args": true, "sidecar": false }] }
+            { "identifier": "shell:allow-execute", "allow": [
+              { "name": "python3", "cmd": "python3", "args": true, "sidecar": false },
+              { "name": "verify-system", "cmd": "sh", "args": ["./scripts/verify_system.sh"] },
+              { "name": "install-python-deps", "cmd": "sh", "args": ["./scripts/install_python_deps.sh"] },
+              { "name": "install-emoji-fonts", "cmd": "sh", "args": ["./scripts/install_emoji_fonts.sh"] }
+            ]}
           ]
         }
       ]
@@ -45,7 +50,7 @@
       "icons/icon.ico"
     ],
     "resources": [
-      "../whisper_transcribe.py"
+      "../scripts/whisper_transcribe.py"
     ]
   },
   "plugins": {

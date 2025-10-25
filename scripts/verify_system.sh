@@ -1,4 +1,38 @@
 #!/bin/bash
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Function to check Python version
+check_python_version() {
+    if command_exists python3; then
+        PY_VERSION=$(python3 --version 2>&1 | awk '{print $2}')
+        echo "✓ Python $PY_VERSION"
+        return 0
+    elif command_exists python; then
+        PY_VERSION=$(python --version 2>&1 | awk '{print $2}')
+        # Check if version starts with 3
+        if [[ $PY_VERSION == 3* ]]; then
+            echo "✓ Python $PY_VERSION"
+            return 0
+        fi
+    fi
+    echo "❌ Python 3 not found"
+    return 1
+}
+
+# Function to check ffmpeg
+check_ffmpeg() {
+    if command_exists ffmpeg; then
+        FFMPEG_VERSION=$(ffmpeg -version | head -n1 | awk '{print $3}')
+        echo "✓ FFmpeg $FFMPEG_VERSION"
+        return 0
+    fi
+    echo "❌ FFmpeg not found"
+    return 1
+}
 # System Verification Script - TikTok Clip Studio v2.0.0
 # Verifies all components are working correctly
 

@@ -1,5 +1,5 @@
-use tokio::process::Command;
 use tauri::{AppHandle, Manager};
+use tokio::process::Command;
 
 /// Transcribes audio using the AI-enhanced whisper script and returns the path to the ASS file.
 #[tauri::command]
@@ -11,7 +11,10 @@ pub async fn transcribe_with_faster_whisper(
     // Resolve the path to the transcription script
     let script_path = app
         .path()
-        .resolve("../whisper_transcribe.py", tauri::path::BaseDirectory::Resource)
+        .resolve(
+            "../scripts/whisper_transcribe.py",
+            tauri::path::BaseDirectory::Resource,
+        )
         .map_err(|_| "failed to resolve whisper_transcribe.py resource".to_string())?;
 
     // Define the output path for the subtitles (the script will convert .srt to .ass)

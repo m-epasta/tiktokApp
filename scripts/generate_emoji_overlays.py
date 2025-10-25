@@ -8,10 +8,18 @@ import sys
 import re
 import json
 from pathlib import Path
+from typing import List, Dict, TypedDict
 
-def parse_ass_file(ass_file: str):
+class EmojiData(TypedDict):
+    """Type definition for emoji data structure"""
+    emoji: str
+    start: str
+    end: str
+    text: str
+
+def parse_ass_file(ass_file: str) -> List[EmojiData]:
     """Parse ASS file and extract emoji positions and timings."""
-    emojis_data = []
+    emojis_data: List[EmojiData] = []
     
     with open(ass_file, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -44,7 +52,7 @@ def parse_ass_file(ass_file: str):
                 r")+", flags=re.UNICODE
             )
             
-            emojis = emoji_pattern.findall(text)
+            emojis: List[str] = emoji_pattern.findall(text)
             
             for emoji in emojis:
                 emojis_data.append({
@@ -64,7 +72,7 @@ def time_to_seconds(time_str: str) -> float:
     seconds = float(parts[2])
     return hours * 3600 + minutes * 60 + seconds
 
-def generate_overlay_filter(emojis_data: list, emoji_images_dir: str = "emoji_images") -> str:
+def generate_overlay_filter(emojis_data: List[EmojiData], emoji_images_dir: str = "emoji_images") -> str:
     """
     Generate FFmpeg overlay filter for all emojis.
     
@@ -77,13 +85,13 @@ def generate_overlay_filter(emojis_data: list, emoji_images_dir: str = "emoji_im
         return ""
     
     with open(map_file, 'r', encoding='utf-8') as f:
-        emoji_map = json.load(f)
+        emoji_map: Dict[str, str] = json.load(f)
     
     # Build overlay filter
-    overlays = []
+    overlays: List[str] = []
     
     for i, data in enumerate(emojis_data):
-        emoji = data['emoji']
+        emoji: str = data['emoji']
         
         # Convert escaped Unicode sequences back to actual emojis
         try:

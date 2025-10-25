@@ -100,3 +100,6 @@ pnpm-debug.log*
 # Debug files
 debug/
 debug.log
+
+
+src/archive/*

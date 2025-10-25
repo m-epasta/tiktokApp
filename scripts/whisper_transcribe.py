@@ -46,7 +46,7 @@ class TranscriptionStats:
     total_words: int = 0
     emoji_count: int = 0
     ai_assigned_emojis: int = 0
-    sentiment_distribution: Dict[str, int] = field(default_factory=lambda: {})
+    sentiment_distribution: Dict[Sentiment, int] = field(default_factory=dict)
     language: str = "unknown"
     language_probability: float = 0.0
 

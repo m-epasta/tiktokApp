@@ -1,5 +1,2 @@
-# Navigate to the directory where you downloaded the file
-cd ~/Downloads
+hey i would like to work on my install & setup bash files. can you make a logger (non user-friendly) and a UX friendly indicators of what the script is doing. add also in those the error that has been did and do cutomed popup in th th style of the app.You have to work on th installer folder and on install.sh , setup_build.sh , and on all the .sh in the script folder
 
-# Install the package (the exact filename may vary)
-sudo apt install ./code_*.deb

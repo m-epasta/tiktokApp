@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "identifier": "com.shortstudio.mvp",
   "build": {
-    "beforeDevCommand": "vite",
+    "beforeDevCommand": "npm run build",
     "devUrl": "http://localhost:5173",
-    "beforeBuildCommand": "vite build && npm run build",
+    "beforeBuildCommand": "npm run build",
     "frontendDist": "../dist"
   },
   "app": {

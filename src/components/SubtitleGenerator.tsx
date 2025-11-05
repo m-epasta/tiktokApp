@@ -18,8 +18,8 @@
  */
 
 import { useState, useRef } from 'react';
-import { invoke } from '@tauri-apps/api/core';
-import { save, open } from '@tauri-apps/plugin-dialog';
+import { invoke } from '@tauri-apps/api/core'
+import { open, save } from '@tauri-apps/plugin-dialog' 
 import { motion } from 'framer-motion';
 import { listen } from '@tauri-apps/api/event';
 import SubtitlePreview from './SubtitlePreview';

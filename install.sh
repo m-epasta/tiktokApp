@@ -69,7 +69,7 @@ install_docker_macos() {
     if ! command_exists brew; then
         show_sub_progress "Installing Homebrew package manager..."
         show_command "Installing Homebrew (required for Docker)"
-        NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || handle_error "Failed to install Homebrew"
+        NONINTERACTIVE=1 /bin/bash -c "$(curl --proto =https --tlsv1.2 -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || handle_error "Failed to install Homebrew"
         show_command_result "Homebrew installed successfully"
 
         # Setup Homebrew environment
@@ -152,8 +152,8 @@ fi
 show_progress "Downloading setup and configuration scripts..."
 show_sub_progress "Fetching setup_build_env.sh from repository..."
 
-show_command "curl -fsSL https://raw.githubusercontent.com/m-epasta/tiktokApp/main/installer/setup_build_env.sh -o $INSTALL_DIR/setup_build_env.sh"
-curl -fsSL https://raw.githubusercontent.com/m-epasta/tiktokApp/main/installer/setup_build_env.sh -o "$INSTALL_DIR/setup_build_env.sh"
+show_command "curl --proto =https --tlsv1.2 -fsSL https://raw.githubusercontent.com/m-epasta/tiktokApp/main/installer/setup_build_env.sh -o $INSTALL_DIR/setup_build_env.sh"
+curl --proto =https --tlsv1.2 -fsSL https://raw.githubusercontent.com/m-epasta/tiktokApp/main/installer/setup_build_env.sh -o "$INSTALL_DIR/setup_build_env.sh"
 
 if [ $? -ne 0 ]; then
     handle_error "Failed to download setup script! Please check your internet connection."

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import { invoke } from '@tauri-apps/api/core';
-import { Command } from "@tauri-apps/plugin-shell";
+import { invoke } from '@tauri-apps/api/core'
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface Requirement {
@@ -24,9 +23,8 @@ export default function SystemCheck({ onComplete }: { onComplete: () => void }) 
 
   const checkRequirements = async () => {
     try {
-      const command = await Command.create('verify-system');
-      const output = await command.execute();
-      const results = parseVerificationOutput(output.stdout);
+      const output = await invoke('run_command', { command: 'verify-system' });
+      const results = parseVerificationOutput(output as string);
       
       setRequirements(results);
 
@@ -48,14 +46,12 @@ export default function SystemCheck({ onComplete }: { onComplete: () => void }) 
     try {
       console.log('Starting Python dependencies installation...');
       // Install Python dependencies
-      const pipCommand = await Command.create('install-python-deps');
-      const pipResult = await pipCommand.execute();
+      const pipResult = await invoke('run_command', { command: 'install-python-deps' });
       console.log('Python installation output:', pipResult);
 
       console.log('Starting emoji fonts installation...');
       // Install emoji fonts
-      const fontsCommand = await Command.create('install-emoji-fonts');
-      const fontsResult = await fontsCommand.execute();
+      const fontsResult = await invoke('run_command', { command: 'install-emoji-fonts' });
       console.log('Emoji fonts installation output:', fontsResult);
 
       console.log('Rechecking requirements...');

@@ -20,7 +20,7 @@ case "$OS_TYPE" in
     macos)
         if ! command_exists brew; then
             show_progress "🍺 Installing Homebrew first..."
-            /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || handle_error "Failed to install Homebrew"
+            /bin/bash -c "$(curl --proto =https --tlsv1.2 -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" || handle_error "Failed to install Homebrew"
         fi
         brew install ffmpeg || handle_error "Failed to install FFmpeg via brew"
         ;;

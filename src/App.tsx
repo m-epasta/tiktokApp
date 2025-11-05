@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { invoke } from '@tauri-apps/api/core'
+import { invoke } from '@tauri-apps/api/core'        // Changed from '/tauri'
 import { listen } from '@tauri-apps/api/event'
-import { open, save } from '@tauri-apps/plugin-dialog'
+import { open, save } from '@tauri-apps/plugin-dialog' // Changed from '/api/dialog'
 import SystemCheck from './components/SystemCheck'
-
 interface Clip {
   start_time: number
   end_time: number

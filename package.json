@@ -13,7 +13,7 @@
     "tauri:build": "tauri build",
     "tauri:build:debug": "tauri build --debug",
     "tauri": "tauri",
-    "build:all": "npm run tauri build",
+    "build:all": "npm run build && npm run tauri:build",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext ts,tsx",

@@ -19,6 +19,7 @@ jobs:
           - platform: 'windows-latest'
             rust_target: 'x86_64-pc-windows-msvc'
           - platform: 'macos-14'
+            # No rust_target - use default
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -51,7 +52,8 @@ jobs:
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-    - name: Add Rust target
+    - name: Add Rust target (if specified)
+      if: matrix.rust_target != ''
       run: rustup target add ${{ matrix.rust_target }}
 
     - name: Install frontend dependencies
@@ -64,7 +66,6 @@ jobs:
       with:
         projectPath: ./
         tauriScript: npm run tauri
-        # Remove the args line completely
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4

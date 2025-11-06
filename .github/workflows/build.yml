@@ -19,7 +19,6 @@ jobs:
           - platform: 'windows-latest'
             rust_target: 'x86_64-pc-windows-msvc'
           - platform: 'macos-14'
-            rust_target: 'universal-apple-darwin'
 
     runs-on: ${{ matrix.platform }}
     steps:

@@ -19,7 +19,7 @@ jobs:
           - platform: 'windows-latest'
             rust_target: 'x86_64-pc-windows-msvc'
           - platform: 'macos-14'
-            rust_target: 'x86_64-apple-darwin'
+            rust_target: 'universal-apple-darwin'
 
     runs-on: ${{ matrix.platform }}
     steps:
@@ -53,7 +53,7 @@ jobs:
         echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
     - name: Add Rust target
-      run: rustup target add ${{ matrix.rust_target }}  # ← ADD THIS LINE
+      run: rustup target add ${{ matrix.rust_target }}
 
     - name: Install frontend dependencies
       run: npm install
@@ -65,7 +65,7 @@ jobs:
       with:
         projectPath: ./
         tauriScript: npm run tauri
-        args: build --target ${{ matrix.rust_target }}
+        # Remove the args line completely
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
